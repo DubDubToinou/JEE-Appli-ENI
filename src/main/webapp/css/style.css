@@ -6,20 +6,21 @@
     list-style: none;
 }
 
-body{ 
+body{
     
     background-color: #08AEEA;
     background-image: linear-gradient(309deg, #08AEEA 0%, #2AF598 100%);
     font-family: 'Montserrat', sans-serif;
     height: 100vh;
     width: 100vw;
+
+
 }
 
 
 .navbar{
-    position: absolute;
+    position: relative;
     padding: 50px;
-    
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -27,7 +28,6 @@ body{
     align-items: center;
     -webkit-box-shadow: 5px 5px 15px 5px #000000; 
     box-shadow: 5px 5px 15px 5px rgb(85, 83, 83);
-
 }
 
 .navbar a{
@@ -82,9 +82,146 @@ body{
     width: 35px;
 }
 
+.texteEnTeteCorps{
+    font-size: 2.8em;
+    display: block;
+    text-align: center;
+    justify-content: center;
+    text-transform: uppercase;
+    margin-top: 50px
+}
 
+.corps{
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.imgCard{
+    width: 7em;
+    height: 7em;
+    border-radius: 40%;
+    border: solid 5px #FFF;
+    position: relative;
+    top: 30px;
+}
+
+.card
+{
+    box-shadow: 0px 5px 18px white;
+    width: 280px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 8px;
+}
+
+.card:hover{
+    box-shadow: 0px 5px 18px #795454;
+}
+
+.card:hover .imgCard{
+    width: 8em;
+    height: 8em;
+}
+
+.card:hover .card-info{
+    margin-top: 2em;
+}
+
+.card-top{
+    background-color: #387a96;
+    text-align: center;
+    height: 25%;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1em 0 1em;
+}
+
+.name{
+    color: #112e56;
+}
+
+.description{
+    text-transform: uppercase;
+    margin-top: 1em;
+    color: #043c72;
+}
+
+.quote{
+    text-align: center;
+    color: #5d2d2d;
+    margin-top: 1em;
+    font-style: italic;
+}
+
+.card-button{
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+button{
+    border: solid 3px #387a96;
+    border-radius: 8px;
+    background-color: white;
+    color:  #2e5467;
+    width: 170px;
+    height: 40px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover{
+    background-color: #387a96;
+    color: white;
+}
+
+.container
+{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.footer
+{
+    box-shadow: 0px 0px 15px 5px rgb(85, 83, 83);
+    display: block;
+    position: absolute;
+    width: 100%;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    justify-items: center ;
+    text-align: center;
+    bottom: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+
+}
 
 @media screen  and (max-width :1035px) {
+
+    .texteEnTeteCorps{
+        font-size: 2em;
+    }
+
+    .footer{
+        position: static;
+    }
+
+    .corps{
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin-bottom: 70px;
+    }
 
     .navbar .menu-hamburger{
         display: block;
