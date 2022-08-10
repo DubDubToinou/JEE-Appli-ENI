@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding:  0;
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    background: #eee0da;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    width: 100vw;
+}
+
+.h1Tentative{
+    margin-top: 10px;
+    font-size: 5em;
+    color: #622a02;
+}
+.formJeu{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.formChoix{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 30px 20px 20px;
+}
+
+fieldset,legend{
+    font-size: 2em;
+}
+
+fieldset{
+    border-radius: 20px;
+    color: #ab0d0d;
+}
+
+.formulaire{
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
+
+.labelForm{
+    margin-left: 40px;
+}
+
+.buttonFormulaire{
+    width: 200px;
+    height: 80px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    border-color: chocolate;
+    font-size: 1.5em;
+    font-weight: normal;
+    color: #a94502;
+}
+
+.buttonFormulaire:hover{
+    background-color: chocolate;
+    color: white;
+}
+
