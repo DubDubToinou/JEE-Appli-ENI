@@ -14,25 +14,13 @@ import java.util.Random;
 public class jeuChifoumi extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    Random rdn = new Random();
-
-
+    String[] choix = new String[] { "Pierre", "Feuille", "Ciseaux"};
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int choixIA = rdn.nextInt(3)+1;
-        String sChoixIA = null;
+        int aleatoire =(int)(Math.random() * 3);
+        String sChoixIA = choix[aleatoire];
         request.setAttribute("sChoixIA", sChoixIA);
-
-        if(choixIA == 1){
-            sChoixIA = "Pierre";
-
-            }else if(choixIA == 2){
-                sChoixIA = "Feuille";
-
-                }else {
-                    sChoixIA =  "Ciseaux";
-                        }
 
         request.setAttribute("sChoixIA", sChoixIA);
         System.out.println("choix de l'IA : " + sChoixIA);
