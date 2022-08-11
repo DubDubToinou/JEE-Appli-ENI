@@ -3,7 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-
+    <!--
+       ############   Servlet TP CHIFOUMI #########
+    -->
 
     <servlet>
         <servlet-name>resultat</servlet-name>
@@ -14,6 +16,31 @@
         <servlet-name>resultat</servlet-name>
         <url-pattern>/WEB-INF/tpchifoumi/resultat.jsp</url-pattern>
     </servlet-mapping>
+
+
+    <!--
+        ############ Servlet Suivi Des Repas #########
+    -->
+    <servlet>
+        <servlet-name>Ajout</servlet-name>
+        <jsp-file>/WEB-INF/suiviDesRepas/Ajout.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Ajout</servlet-name>
+        <url-pattern>/WEB-INF/suiviDesRepas/Ajout.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Historique</servlet-name>
+        <jsp-file>/WEB-INF/suiviDesRepas/Historique.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Historique</servlet-name>
+        <url-pattern>/WEB-INF/suiviDesRepas/Historique.jsp</url-pattern>
+    </servlet-mapping>
+
 </web-app>
 
 

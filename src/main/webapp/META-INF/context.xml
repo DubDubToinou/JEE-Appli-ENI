@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Context>
+    <Resource
+
+            name="jdbc/pool_cnx"
+            drivercClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+            type="javax.sql.DataSource"
+            url="jdbc:server://localhost:1433;databaseName=SUIVI_DES_REPAS;trustServerCertificate=True"
+            username="utilisateurBDD"
+            password="Pa$$w0rd"
+        />
+</Context>
