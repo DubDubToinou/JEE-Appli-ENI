@@ -2,76 +2,86 @@ package fr.eni.tpjee.mesapplications.repas.dal.jdbc;
 
 import fr.eni.tpjee.mesapplications.repas.bo.Aliments;
 import fr.eni.tpjee.mesapplications.repas.bo.Repas;
-import fr.eni.tpjee.mesapplications.repas.dal.DAO;
+import fr.eni.tpjee.mesapplications.repas.dal.DAORepas;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepasDAOJdbcImpl implements DAO<Repas> {
+public class RepasDAOJdbcImpl implements DAORepas {
 
-
-    @Override
-    public void insert(Repas elementRepas) throws SQLException{
+    public void insert(Repas elementRepas) {
         try(
-                Connection con = ConnectionProvider.getConnection();
+                Connection con = ConnectionProvider.getConnection()
         ) {
 
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO Repas(id_repas,date_repas,heure_repas) VALUES (?,?,?,?)");
 
-            stmt.setInt(1, elementRepas.getId_repas());
-            stmt.setDate(2, Date.valueOf(elementRepas.getDate_repas()));
-            stmt.setTime(3, Time.valueOf(elementRepas.getDate_repas()));
+
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO Repas(date_repas,heure_repas) VALUES (?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt2 = con.prepareStatement("INSERT INTO Aliments (nom_aliment,id_repas) VALUES (?,?)");
+
+            stmt.setDate(1, Date.valueOf(elementRepas.getDate_repas()));
+            stmt.setTime(2, Time.valueOf(elementRepas.getHeure_repas()));
 
             stmt.executeUpdate();
 
-        }catch (SQLException ex){
-            ex.printStackTrace();
-        }
+            ResultSet rs = stmt.getGeneratedKeys();
 
-    }
+            List<Aliments> aliments;
 
-    @Override
-    public List<Repas> selectAll() {
-        List<Repas> listeDesRepas = new ArrayList<Repas>();
+            if(rs.next()){
+                elementRepas.setId_repas((rs.getInt(1)));
+                aliments = elementRepas.getAliments();
 
-        Repas elementRepas = null;
-        Aliments aliment = null;
-        Statement stmt;
-        Statement stmt2;
-
-        String sqlSelect = ("SELECT id_repas FROM Repas");
-        String sqlSelectAliments = ("SELECT id_aliment,nom_aliment,id_repas FROM Aliments WHERE id_repas = ");
-
-        try(
-                Connection con = ConnectionProvider.getConnection();
-                ){
-
-
-            stmt = con.createStatement();
-            stmt2 = con.createStatement();
-
-            ResultSet rs  = stmt.executeQuery(sqlSelect);
-
-            while (rs.next()) {
-                elementRepas = new Repas(rs.getInt("id_repas"), rs.getTime("date_repas"), rs.getTime("heure_repas"));
-
-                listeDesRepas.add(elementRepas);
-
-                ResultSet rsAliments = stmt2.executeQuery(sqlSelectAliments + elementRepas.getId_repas());
-
-                while (rsAliments.next()) {
-                    aliment = new Aliments(rsAliments.getInt("idAliments"), rsAliments.getString("nom"),
-                            rsAliments.getInt("idPizza"));
-                    elementRepas.addAliments(aliment);
+                for (Aliments elementAliment : aliments){
+                    stmt2.setString(1, elementAliment.getNom_aliment());
+                    stmt2.setInt(2, elementRepas.getId_repas());
+                    elementAliment.setId_repas(elementRepas.getId_repas());
+                    stmt2.executeUpdate();
                 }
-
             }
 
         }catch (SQLException ex){
             ex.printStackTrace();
         }
 
-        return listeDesRepas;
     }
+
+    @Override
+    public List<Repas> selectAll(){
+        List<Repas> listeDesRepas = new ArrayList<>();
+        Statement stmt;
+        Statement stmt2;
+
+        try(Connection con = ConnectionProvider.getConnection()){
+
+            stmt = con.createStatement();
+            stmt2 = con.createStatement();
+
+            ResultSet  rsRepas = stmt.executeQuery("SELECT id_repas,date_repas,heure_repas FROM Repas");
+
+            while(rsRepas.next()){
+                Repas repas = new Repas(rsRepas.getInt("id_repas"), rsRepas.getTime("heure_repas").toLocalTime(),
+                        rsRepas.getDate("date_repas").toLocalDate());
+
+                listeDesRepas.add(repas);
+
+                ResultSet rsAliments = stmt2.executeQuery("SELECT nom_aliment,id_repas FROM Aliments WHERE = " + repas.getId_repas());
+
+                while(rsAliments.next()){
+                    Aliments aliment = new Aliments(rsAliments.getString("nom_aliment"), rsAliments.getInt("id_repas"));
+                    repas.addAliment(aliment);
+                }
+            }
+
+        }catch (SQLException ex){
+            ex.printStackTrace();
+
+        }
+
+        return listeDesRepas;
+
+    }
+
+
 }

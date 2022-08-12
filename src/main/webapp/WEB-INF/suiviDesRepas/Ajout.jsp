@@ -14,7 +14,7 @@
 
     <h1>Ajouter un repas</h1>
 
-    <form action="${pageContext.request.contextPath}/ServletAjoutRepas" method="get">
+    <form action="${pageContext.request.contextPath}/ServletAjoutRepas" method="post">
         <label for="dateRepas">Date</label>
         <input type="date" name="dateRepas" id="dateRepas"><br><br>
 

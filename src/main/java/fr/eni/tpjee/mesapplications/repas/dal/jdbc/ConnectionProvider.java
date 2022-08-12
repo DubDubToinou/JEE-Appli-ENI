@@ -2,7 +2,6 @@ package fr.eni.tpjee.mesapplications.repas.dal.jdbc;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -13,7 +12,7 @@ public class ConnectionProvider {
     static {
 
         try {
-            dataSource = InitialContext.doLookup("java:com/env/jdbc/pool_cnx");
+            dataSource = InitialContext.doLookup("java:comp/env/jdbc/pool_cnx");
 
         } catch (NamingException ex) {
             ex.printStackTrace();
