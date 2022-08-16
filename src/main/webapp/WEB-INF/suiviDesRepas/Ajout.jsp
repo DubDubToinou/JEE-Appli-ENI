@@ -25,7 +25,7 @@
         <textarea id="alimentsRepas" name="alimentsRepas" rows="2" cols="70"></textarea><br><br>
 
         <input type="submit" value="Ajouter le Repas">
-        <input type="submit" value="Retour à l'accueil">
+        <a href="${pageContext.request.contextPath}/suiviDesRepas/Accueil.jsp"><input type="button" value="Retour à l'accueil"></a>
     </form>
 </body>
 </html>

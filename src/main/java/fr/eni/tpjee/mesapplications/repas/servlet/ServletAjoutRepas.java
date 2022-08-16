@@ -55,7 +55,7 @@ public class ServletAjoutRepas extends HttpServlet {
         try {
 
             suiviRepasManager.addRepas(repas);
-            RequestDispatcher rd = this.getServletContext().getNamedDispatcher("Ajout");
+            RequestDispatcher rd = this.getServletContext().getNamedDispatcher("Historique");
             rd.forward(request,response);
 
 

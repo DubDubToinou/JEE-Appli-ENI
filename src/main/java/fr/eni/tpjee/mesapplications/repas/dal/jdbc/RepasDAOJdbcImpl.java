@@ -65,8 +65,7 @@ public class RepasDAOJdbcImpl implements DAORepas {
                         rsRepas.getDate("date_repas").toLocalDate());
 
                 listeDesRepas.add(repas);
-
-                ResultSet rsAliments = stmt2.executeQuery("SELECT nom_aliment,id_repas FROM Aliments WHERE = " + repas.getId_repas());
+                ResultSet rsAliments = stmt2.executeQuery("SELECT nom_aliment,id_repas FROM Aliments WHERE id_repas = " + repas.getId_repas());
 
                 while(rsAliments.next()){
                     Aliments aliment = new Aliments(rsAliments.getString("nom_aliment"), rsAliments.getInt("id_repas"));
